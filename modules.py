@@ -164,11 +164,17 @@ def basic_info(host, model):
                 uptime1 = int('{:.0f}'.format(uptime1))
                 uptime2 = int('{:.0f}'.format(uptime2))
                 uptime3 = int('{:.0f}'.format(uptime3))
-                result = f"{constant.UP} IP: {host}\nИмя устройства: {sysname}\nCPU:{uptime}%\nRAM:{uptime4}%\nStatus ClusterXL:{stastus}\nIdentity Awareness Status:{ias}\nIdentity Awareness Users:{iau}\nTotal RAM:{uptime2}GB\nFree RAM:{uptime1}GB\nUsed RAM:{uptime3}GB"
+                
+
+                result = f"{constant.UP} IP: {host}\nИмя устройства: {sysname}\n{constant.UP}CPU:{uptime}%\n{constant.UP}RAM:{uptime4}%\nStatus ClusterXL:{stastus}\nIdentity Awareness Status:{ias}\nIdentity Awareness Users:{iau}\nTotal RAM:{uptime2}GB\nFree RAM:{uptime1}GB\nUsed RAM:{uptime3}GB"
+
+                if uptime4 > 60:result = f"{constant.UP} IP: {host}\nИмя устройства: {sysname}\n{constant.UP}CPU:{uptime}%\n{constant.CRITICAL}RAM:{uptime4}%\nStatus ClusterXL:{stastus}\n{Identity Awareness Status:{ias}\nIdentity Awareness Users:{iau}\nTotal RAM:{uptime2}GB\nFree RAM:{uptime1}GB\nUsed RAM:{uptime3}GB"
                 return result
-            except:
+            except :
+                
                 result = f"{constant.CRITICAL} Устройство не на связи"
                 return result
+                   
     except ipaddress.AddressValueError:
         result = "Неверный IP"
         return result
